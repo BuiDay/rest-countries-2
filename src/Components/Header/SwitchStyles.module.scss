@@ -1,0 +1,46 @@
+.toggleBtn{
+    height: 30px;
+    width: 70px;
+    background-color: aqua;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    background: var(--ToggleBackgroundColor);
+    
+
+    .Circle{
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background: #fff;
+        transition: all 0.4s ease;
+    }
+
+    .Icon{
+        color:var(--IconSwitchColor);
+        font-size: 20px;
+        margin-top: 5px;
+        transition: all 0.4s ease;
+    }
+
+    .Input:checked ~ .Circle {
+        transform: translateX(-37px);
+        -webkit-transform: translateX(-37px);
+        -ms-transform: translateX(-37px);
+    }
+
+    .Input:checked ~ .Icon {
+        transform: translateX(33px);
+        -webkit-transform: translateX(33px);
+        -ms-transform: translateX(33px);
+    }
+
+    .Input{
+        margin-left: -20px;
+        opacity: 0;
+    }
+    
+}
