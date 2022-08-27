@@ -3,11 +3,14 @@ import {FaChevronDown} from 'react-icons/fa'
 import styled from 'styled-components';
 import { ThemeContext } from '../../ThemeContext/ThemeContext.js';
 import Options from './Options.js';
+import {useParams} from 'react-router-dom'
 
 const Filter = () => {
     const themeContext = useContext(ThemeContext);
     const refSelect = useRef(null);
     const [isShowOptions, setIsShowOptions] = useState(false); 
+    const {regionName} = useParams();
+    const [optionName, setOptionName] = useState('All');
 
     const handleOptions = (e) =>{
         if(refSelect.current)
@@ -22,12 +25,19 @@ const Filter = () => {
         }
     },[isShowOptions])
 
+    useEffect(()=>{
+        if(regionName)
+            setOptionName(regionName);
+        else
+            setOptionName('All');
+    },[regionName])
+
     return (
         <FilterPane>
             <h3>Filter my regions</h3>
             <SelectPane>
                 <Select className={themeContext.theme} ref={refSelect} onClick={(e)=>handleOptions(e)}>
-                    <span>All</span>
+                    <span>{optionName}</span>
                     <FaChevronDown/>
                 </Select>
                 <Options isShowOptions={isShowOptions} />
