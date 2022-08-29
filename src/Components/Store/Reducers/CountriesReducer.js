@@ -1,6 +1,7 @@
- import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_COUNTRIES_BY_REGION,GET_COUNTRIES_BY_NAME } from "../types"
+ import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_COUNTRIES_BY_REGION,GET_COUNTRIES_BY_NAME,GET_LOADING } from "../types"
 
  const CountriesReducerInitialState = {
+    loading:'',
     countries:[],
     country:null
  }
@@ -18,6 +19,10 @@
             
         case GET_COUNTRIES_BY_NAME:
             return {...state, countries:payload};
+
+        case GET_LOADING:
+            return {...state, loading:payload};
+
         default:
             return state;
     }

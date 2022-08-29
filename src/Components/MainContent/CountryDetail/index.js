@@ -7,6 +7,7 @@ import CountryInfo from './CountryInfo';
 import { getCountryByName } from '../../Store/Actions/countriesActions';
 import { useSelector } from 'react-redux';
 import ScrollBar from 'react-perfect-scrollbar';
+import Loading from '../../Loading/Loading';
 
 const CountryDetail = () => {
     const themeContext = useContext(ThemeContext);
@@ -14,23 +15,30 @@ const CountryDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const country = useSelector(state => state.Countries.country);
+    const loading = useSelector(state => state.Countries.loading);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getCountryByName(slug.countryName));
-    },[slug.countryName,dispatch]);
+    }, [slug.countryName, dispatch]);
 
     return (
-        <ScrollBar style={{maxHeight:'100vh', overflow:'hidden'}}>
-        <Wrapper>
-            <div className={`goback-btn ${themeContext.theme}`} onClick={()=>navigate(-1)}>Go Back</div>
-            <CountryContainer>
-                <div className='flagCountry'>
-                    <img src={country ? country.flag : 'https://via.placeholder.com/75'} alt="" />
-                </div>
-                <CountryInfo />
-            </CountryContainer>
-        </Wrapper>
-        </ScrollBar>
+        <>
+            {
+                loading ? <Loading /> : (
+                    <ScrollBar style={{ maxHeight: '100vh', overflow: 'hidden' }}>
+                        <Wrapper>
+                            <div className={`goback-btn ${themeContext.theme}`} onClick={() => navigate(-1)}>Go Back</div>
+                            <CountryContainer>
+                                <div className='flagCountry'>
+                                    <img src={country ? country.flag : 'https://via.placeholder.com/75'} alt="" />
+                                </div>
+                                <CountryInfo />
+                            </CountryContainer>
+                        </Wrapper>
+                    </ScrollBar>
+                )
+            }
+        </>
     );
 };
 

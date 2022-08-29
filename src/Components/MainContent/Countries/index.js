@@ -1,40 +1,49 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Country from './Country';
-import { getCountries,getCountriesByRegion,getCountriesByName } from '../../Store/Actions/countriesActions';
+import { getCountries, getCountriesByRegion, getCountriesByName } from '../../Store/Actions/countriesActions';
 import { useDispatch, useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ScrollBar from 'react-perfect-scrollbar';
+import Loading from '../../Loading/Loading';
 
 
 const Countries = () => {
     const dispatch = useDispatch();
-    const countries = useSelector(state =>state.Countries.countries);
+    const countries = useSelector(state => state.Countries.countries);
+    const loading = useSelector(state => state.Countries.loading);
     const slug = useParams();
 
-    useEffect(()=>{
-        if(slug.regionName){
+    useEffect(() => {
+        if (slug.regionName) {
             dispatch(getCountriesByRegion(slug.regionName));
         }
-        else if(slug.Name){
+        else if (slug.Name) {
             dispatch(getCountriesByName(slug.Name));
         }
         else
             dispatch(getCountries());
-    },[dispatch, slug.regionName,slug.Name]);
+    }, [dispatch, slug.regionName, slug.Name]);
 
     return (
-         <ScrollBar style={{maxHeight:'70vh', overflow:'hidden'}}> 
-            <CountriesContainer>
-                {
-                    countries.map((country, index)=>{
-                        return(
-                            <Country country={country} key={index} />
-                        )
-                    })
-                }
-            </CountriesContainer>
-        </ScrollBar>
+        <>
+            {
+                loading ? <Loading /> :
+                    (
+                        <ScrollBar style={{ maxHeight: '70vh', overflow: 'hidden' }}>
+                            <CountriesContainer>
+                                {
+                                    countries.map((country, index) => {
+                                        return (
+                                            <Country country={country} key={index} />
+                                        )
+                                    })
+                                }
+                            </CountriesContainer>
+                        </ScrollBar>
+                    )
+            }
+        </>
     );
 };
 
