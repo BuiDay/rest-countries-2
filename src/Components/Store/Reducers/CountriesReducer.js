@@ -1,4 +1,4 @@
- import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_COUNTRIES_BY_REGION } from "../types"
+ import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_COUNTRIES_BY_REGION,GET_COUNTRIES_BY_NAME } from "../types"
 
  const CountriesReducerInitialState = {
     countries:[],
@@ -15,7 +15,9 @@
         
         case GET_COUNTRIES_BY_REGION:
             return {...state, countries:payload};
-
+            
+        case GET_COUNTRIES_BY_NAME:
+            return {...state, countries:payload};
         default:
             return state;
     }
