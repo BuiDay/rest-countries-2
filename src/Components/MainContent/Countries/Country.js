@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 const Country = ({ country }) => {
     const themeContext = useContext(ThemeContext);
+    
 
     return (
         <Link to={`/country/${country.name}`}>

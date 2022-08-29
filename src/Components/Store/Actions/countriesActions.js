@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_COUNTRIES, GET_COUNTRY_BY_NAME } from "../types";
+import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_COUNTRIES_BY_REGION } from "../types";
 
 const countriesApi = 'https://restcountries.com/v2/'
 
@@ -26,8 +26,9 @@ export const getCountryByName = (name) => async(dispatch) =>{
     .catch((err)=>console.log('Get countries api error',err))
 }
 
-export const getCountriesByRegion = () => async (dispatch) =>{
-    await axios.get(countriesApi + '/all')
+export const getCountriesByRegion = (region) => async (dispatch) =>{
+ 
+    await axios.get(`${countriesApi}/region/${region}`)
     .then(res=>{
         const countries = res.data.map((country)=>({
             name: country.name,
@@ -36,7 +37,7 @@ export const getCountriesByRegion = () => async (dispatch) =>{
             region: country.region,
             flag: country.flag
         }))
-        dispatch({type: GET_COUNTRIES, payload:countries})
+        dispatch({type: GET_COUNTRIES_BY_REGION, payload:countries})
     })
     .catch((err)=>console.log('Get countries api error',err))
 }
