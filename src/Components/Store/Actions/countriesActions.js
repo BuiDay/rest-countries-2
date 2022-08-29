@@ -27,7 +27,6 @@ export const getCountryByName = (name) => async(dispatch) =>{
 }
 
 export const getCountriesByRegion = (region) => async (dispatch) =>{
- 
     await axios.get(`${countriesApi}/region/${region}`)
     .then(res=>{
         const countries = res.data.map((country)=>({
@@ -38,6 +37,14 @@ export const getCountriesByRegion = (region) => async (dispatch) =>{
             flag: country.flag
         }))
         dispatch({type: GET_COUNTRIES_BY_REGION, payload:countries})
+    })
+    .catch((err)=>console.log('Get countries api error',err))
+}
+
+export const getCountriesByName = (name) => async(dispatch) =>{
+    await axios.get(`${countriesApi}/name/${name}`)
+    .then(res=>{
+        dispatch({type: GET_COUNTRY_BY_NAME, payload:res.data[0]})
     })
     .catch((err)=>console.log('Get countries api error',err))
 }
