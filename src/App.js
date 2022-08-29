@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './App.css';
 import Header from './Components/Header/Header';
 import MainContent from './Components/MainContent';
+import CountryDetail from './Components/MainContent/CountryDetail';
 import {ThemeContext} from './Components/ThemeContext/ThemeContext';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<MainContent />} />
           <Route path='/region/:regionName' element={<MainContent />} />
+          <Route path='/country/:countryName' element={<CountryDetail/>} />
         </Routes>
         </ContentContainer>
       </Router>
@@ -27,8 +29,8 @@ export default App;
 
 const AppContainer = styled.div`
     height:100vh;
-    width:100%;
     overflow:hidden;  
+    width:100%;
 `
 
 const ContentContainer = styled.div`
