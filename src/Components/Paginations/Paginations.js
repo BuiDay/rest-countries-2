@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./PaginationsStyle.module.scss"
 
 const Pagination = ({currentPage, setCurrentPage, countriesPerPage, totalCountries}) => {
@@ -10,7 +9,6 @@ const Pagination = ({currentPage, setCurrentPage, countriesPerPage, totalCountri
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
-    
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

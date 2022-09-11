@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useMemo } from 'react';
 import styled from 'styled-components';
 import Country from './Country';
 import { getCountries, getCountriesByRegion, getCountriesByName } from '../../Store/Actions/countriesActions';
@@ -25,6 +25,7 @@ const Countries = () => {
   );
   
     useEffect(() => {
+        
         if (slug.regionName) {
             dispatch(getCountriesByRegion(slug.regionName));
             setCurrentPage(1);
@@ -37,7 +38,9 @@ const Countries = () => {
             dispatch(getCountries());
     }, [dispatch, slug.regionName, slug.Name]);
 
-
+    useEffect(() => {
+    window.scrollTo({top: 0})
+  }, [currentPage])
 
     return (
         <>
