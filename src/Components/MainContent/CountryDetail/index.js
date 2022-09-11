@@ -70,10 +70,10 @@ const Wrapper = styled.div`
 const CountryContainer = styled.div`
     display:flex;
     flex-direction:row;
-    @media only screen and(max-width:800px){
+    @media only screen and (max-width: 800px) {
         flex-direction:column;
         align-items:center;
-    }
+      }
     .flagCountry{
         max-width:400px;
         width:100%;

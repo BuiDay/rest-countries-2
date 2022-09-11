@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Filter from './Filter';
-import Search from './Search';
 
 const SearchAndFilter = () => {
     return (
         <SearchAndFilterPane>
-            <Search />
             <Filter />
         </SearchAndFilterPane>
     );

@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchMode from './SwitchMode';
+import Search from "./Search";
 import { ThemeContext } from '../ThemeContext/ThemeContext.js';
 import {Link} from 'react-router-dom'
+
+
 const Header = () => {
     const themeContext = useContext(ThemeContext);
     return (
         <HeaderPane className={themeContext.theme}>
-            <Link to={'/'}>
-                <span className="title" > Where are you from?</span>
-            </Link>
+            <div className='search'>
+                <Link to={'/'}>
+                    <span className="title" > Where are you from?</span>
+                </Link>
+                <Search />
+            </div>
             <SwitchMode />
+            
+            
         </HeaderPane>
     );
 };
@@ -31,5 +39,11 @@ const HeaderPane = styled.div`
         font-weight:bold;
         text-shadow:var(--TextShadow);
         cusor:pointer;
+    }
+    .search{
+        display:flex;
+        justify-content:start;
+        align-items:center;
+        width:60%;
     }
 `
