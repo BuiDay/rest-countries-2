@@ -27,9 +27,11 @@ const Countries = () => {
     useEffect(() => {
         if (slug.regionName) {
             dispatch(getCountriesByRegion(slug.regionName));
+            setCurrentPage(1);
         }
         else if (slug.Name) {
             dispatch(getCountriesByName(slug.Name));
+            setCurrentPage(1);
         }
         else
             dispatch(getCountries());
